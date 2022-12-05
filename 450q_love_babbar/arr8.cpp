@@ -9,24 +9,14 @@ class Solution{
     // arr: input array
     // n: size of array
     //Function to find the sum of contiguous subarray with maximum sum.
-    long long maxSubarraySum(int arr[], int n){
-        int arr2[n+1];
-        arr2[0] = 0;
-        vector<int> v;
-        int max = arr[0], maxr = arr[0];
-        for(int i = 1; i < n; i++) {
-            maxr += arr[i];
-            if(maxr > max) max = maxr;
-            if(maxr < 0) maxr = 0;
+    long long maxSubarraySum(int arr[], int n) {
+        int ans = arr[0], maxr = 0;
+        for(int i = 0; i < n; i++) {
+            maxr+=arr[i];
+            ans = max(maxr, ans);
+            if(maxr<0) maxr=0;
         }
-        if(maxr<=0) {
-            int maxn=arr[0];
-            for(int i = 1; i < n; i++) {
-                if(maxn<arr[i]) maxn = arr[i];
-            }
-            return maxn;
-        }
-        return max;
+        return ans;
     }
 };
 
