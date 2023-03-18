@@ -1,0 +1,53 @@
+#include <bits/stdc++.h> 
+
+struct Node {
+    int val;
+    Node * next;
+
+    Node(int x) {
+        val = x;
+        next = NULL;
+    }
+};
+
+class Queue {
+    Node * head;
+    Node * tail;
+public:
+    Queue() {
+        // Implement the Constructor
+        head = NULL;
+        tail = NULL;
+    }
+
+    /*----------------- Public Functions of Queue -----------------*/
+
+    bool isEmpty() {
+        if(head == NULL) return true;
+        return false;
+    }
+
+    void enqueue(int data) {
+        Node * newNode = new Node(data);
+        if(head == NULL) {
+            head = newNode;
+            tail = newNode;
+            return;
+        }
+        tail->next = newNode;
+        tail = newNode;
+    }
+
+    int dequeue() {
+        if(head==NULL) return -1;
+        int val = head->val;
+        head = head->next;
+        if(head == NULL) tail=NULL;
+        return val;
+    }
+
+    int front() {
+        if(head == NULL) return -1;
+        return head->val;
+    }
+};
